@@ -46,7 +46,7 @@ Antes de começar, garanta que você tenha os seguintes programas instalados:
 -   **npm:** (Já vem instalado com o Node.js)
 -   **PostgreSQL:** [Baixe aqui](https://www.postgresql.org/download/)
     -   *Durante a instalação, você precisará definir uma senha para o superusuário `postgres`. **Anote esta senha!***
--   **Git:** [Baixe aqui](https://git-scm.com/) (Opcional, mas recomendado)
+-   **Git:** [Baixe aqui](https://git-scm.com/) (Opcional, se for clonar de um repositório)
 
 ### **2. Configuração do Banco de Dados**
 
@@ -54,7 +54,7 @@ O projeto precisa de um banco de dados configurado para funcionar.
 
 1.  Abra sua ferramenta de gerenciamento de PostgreSQL (como **pgAdmin**).
 2.  Crie um novo banco de dados com o nome `smartsitter`.
-3.  Abra a **Query Tool** para este banco de dados e execute o script SQL abaixo para criar todas as tabelas e inserir um produto de exemplo.
+3.  Abra a **Query Tool** para este banco de dados e execute o script SQL abaixo.
 
 ```sql
 -- Cria a tabela de usuários
@@ -90,61 +90,14 @@ CREATE TABLE carrinho_itens (
 INSERT INTO produtos (id, nome, preco, detalhes, imagem_url) 
 VALUES (1, 'Aparelho Inteligente SmartSitter', 499.90,
     ARRAY['Monitoramento em tempo real','Sensor de temperatura e umidade','Notificações inteligentes no seu celular','Visão noturna de alta qualidade'],
-    'https://i.imgur.com/URL_DA_IMAGEM.png' -- TROQUE PELA URL DA SUA IMAGEM
+    'https://i.imgur.com/URL_DA_SUA_IMAGEM.png' -- IMPORTANTE: TROQUE PELA URL REAL DA SUA IMAGEM
 ) ON CONFLICT (id) DO NOTHING;
 
--- Atualiza o contador de IDs
 SELECT setval('produtos_id_seq', (SELECT MAX(id) FROM produtos));
-3. Configuração do Projeto
+
+### 3. Configuração do Projeto
 Clone ou baixe o código:
-code
-Bash
+
 git clone https://github.com/seu-usuario/seu-repositorio.git
 # Ou simplesmente descompacte os arquivos do projeto em uma pasta.
-Configure o Backend:
-Navegue até a pasta Backend: cd Backend
-Crie um arquivo chamado .env e cole o conteúdo abaixo, substituindo os valores pelos seus:
-code
-Env
-# Configuração do Servidor
-PORT=3001
-
-# Chave Secreta para JWT (Mude para algo único e secreto)
-JWT_SECRET=sua-chave-secreta-forte-aqui-123
-
-# Configuração do Banco de Dados PostgreSQL
-DB_USER=postgres
-DB_HOST=localhost
-DB_DATABASE=smartsitter
-DB_PASSWORD=a_senha_que_voce_anotou
-DB_PORT=5432
-Instale as dependências:
-code
-Bash
-npm install
-Configure o Frontend:
-Em um novo terminal, navegue até a pasta Frontend: cd Frontend
-Instale as dependências:
-code
-Bash
-npm install
-4. Executando a Aplicação
-Você precisará de dois terminais abertos simultaneamente.
-No primeiro terminal (para o Backend):
-code
-Bash
-# Navegue para a pasta Backend
-cd Backend
-
-# Inicie o servidor em modo de desenvolvimento
-npm run dev
-O terminal deverá exibir: Servidor rodando na porta 3001. Deixe este terminal aberto.
-No segundo terminal (para o Frontend):
-code
-Bash
-# Navegue para a pasta Frontend
-cd Frontend
-
-# Inicie a aplicação React
-npm run dev
-O terminal fornecerá uma URL local, como http://localhost:5173. Abra este link no seu navegador para ver e usar a aplicação.
+cd seu-repositorio
