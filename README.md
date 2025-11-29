@@ -1,4 +1,4 @@
-# SmartSitter - Aplicação Fullstack de E-commerce
+# SmartSitter - Aplicação Fullstack
 
 Este é um projeto fullstack de um e-commerce para o produto SmartSitter. A aplicação inclui um backend construído com Node.js e Express, conectado a um banco de dados PostgreSQL, e um frontend moderno e reativo construído com React e Vite.
 
